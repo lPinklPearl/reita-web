@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Tribute to REITA | the GazettE</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<style>
+
+body{
+  margin:0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ---------- LANG BUTTON ---------- */
+.lang-switch{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:50;
+}
+.lang-switch button{
+  padding:8px 14px;
+  background:#111;
+  border:1px solid #555;
+  color:white;
+  cursor:pointer;
+  border-radius:20px;
+  margin-left:5px;
+}
+.lang-switch button.active{
+  background:white;
+  color:black;
+}
+
+/* ---------- PARTICLE BG ---------- */
+#particles{
+  position:fixed;
+  width:100%;
+  height:100%;
+  top:0;
+  left:0;
+  z-index:-1;
+}
+
+/* ---------- HERO ---------- */
+.hero{
+  height:100vh;
+  width:100%;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:#000;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:"";
+  position:absolute;
+  left:0; top:0;
+  width:120%;
+  height:120%;
+  background:url("https://jrocknews.com/wp-content/uploads/2025/04/the-gazette-reita-solo-top.jpg")
+  center/cover no-repeat;
+  opacity:1;
+  transform:translateY(-10px);
+}
+
+.hero .overlay{
+  position:absolute;
+  width:100%; height:100%;
+  background:radial-gradient(rgba(0,0,0,.9),rgba(0,0,0,1));
+}
+
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  padding:0 20px;
+}
+
+.hero h1{
+  font-size:48px;
+  letter-spacing:2px;
+  margin-bottom:15px;
+}
+
+.typing{
+  font-size:20px;
+  opacity:.9;
+  min-height:50px;
+}
+
+.divider{
+  margin:30px auto;
+  width:140px;
+  height:1px;
+  background:#888;
+}
+
+/* ---------- SECTION ---------- */
+.section{
+  max-width:900px;
+  margin:90px auto;
+  padding:0 20px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:1s;
+  text-align: center;
+}
+
+.section.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.section h2{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.section p{
+  line-height:1.8;
+  opacity:.9;
+}
+
+.quote{
+  font-style:italic;
+  opacity:.8;
+  text-align:center;
+  margin-top:25px;
+}
+
+.memory-box{
+  background:#0a0a0a;
+  border:1px solid #222;
+  padding:20px;
+  border-radius:10px;
+  margin-top:20px;
+}
+
+/* ---------- CANDLE ---------- */
+.candle{
+  width:6px;
+  height:70px;
+  background:#fff;
+  margin:40px auto 10px;
+  border-radius:3px;
+  position:relative;
+}
+
+.flame{
+  position:absolute;
+  top:-22px;
+  left:50%;
+  transform:translateX(-50%);
+  width:18px;
+  height:28px;
+  background:radial-gradient(ellipse at center, #ffd000, #ff7b00);
+  border-radius:50%;
+  box-shadow:0 0 25px #ffae00;
+  animation:flicker 1.4s infinite ease-in-out;
+}
+
+@keyframes flicker{
+  0%{ transform:translateX(-50%) scale(1);}
+  50%{ transform:translateX(-50%) scale(1.15);}
+  100%{ transform:translateX(-50%) scale(1);}
+}
+
+/* ---------- MUSIC BUTTON ---------- */
+.music-btn{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  padding:12px 18px;
+  border-radius:30px;
+  background:#111;
+  color:#fff;
+  border:1px solid #444;
+  cursor:pointer;
+  transition:.3s;
+  opacity:.8;
+}
+
+.music-btn:hover{
+  opacity:1;
+  transform:scale(1.05);
+}
+
+.footer{
+  text-align:center;
+  padding:60px 10px;
+  opacity:.7;
+}
+
+</style>
+<link rel="icon" type="image/png" href="https://upload.wikimedia.org/wikipedia/commons/7/7b/The_Gazette_wordmark.svg">
+
+</head>
+
+<body>
+
+<!-- LANGUAGE BUTTON -->
+<div class="lang-switch">
+  <button id="thBtn" class="active">TH</button>
+  <button id="enBtn">EN</button>
+</div>
+
+<canvas id="particles"></canvas>
+
+<div class="hero">
+  <div class="overlay"></div>
+  <div class="hero-content">
+    <h1 id="title">🖤 In Loving Memory of REITA</h1>
+    <div class="divider"></div>
+    <p class="typing"></p>
+  </div>
+</div>
+
+<section class="section">
+  <h2 id="whoTitle">🎸 Who He Was</h2>
+  <p id="whoText">
+    สมาชิกผู้เป็นเสาหลักของ the GazettE ผู้ชายที่ทุ่มเททั้งชีวิตให้กับดนตรี
+  </p>
+
+  <div id="whoList">
+    <p>เสียงเบสที่เป็นเอกลักษณ์</p>
+    <p>พลังบนเวทีที่ไม่มีใครแทนได้</p>
+    <p>ความเข้มแข็งและหัวใจที่ยิ่งใหญ่</p>
+  </div>
+
+  <p class="quote" id="quote">
+    “แม้ตัวตนจะจากไป แต่เสียงดนตรีจะไม่มีวันเลือนหาย”
+  </p>
+</section>
+
+<section class="section">
+  <h2 id="memoryTitle">🌹 Memories & Legacy</h2>
+  <div class="memory-box">
+    <p id="memoryText">
+      ทุกการแสดง… ทุกเสียงดนตรี… ยังมีชีวิตอยู่  
+      และจะยังคงเดินทางต่อไปในหัวใจของผู้คนทั่วโลก
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <h2 id="fanTitle">🤍 From Fans, With Love</h2>
+  <p id="fanText" style="text-align:center;">
+    “ขอบคุณสำหรับแรงบันดาลใจ”<br>
+    “คุณทำให้เราเข้มแข็งขึ้น”<br>
+    “คุณจะอยู่ในหัวใจเราเสมอ”
+  </p>
+
+  <div class="candle">
+    <div class="flame"></div>
+  </div>
+
+  <p style="text-align:center;opacity:.8;" id="forever">
+    Forever in Our Hearts
+  </p>
+</section>
+
+<div class="footer" id="footerText">
+  Rest in Peace, REITA — You Will Never Be Forgotten.
+</div>
+
+<button class="music-btn">Play Music</button>
+
+<audio id="bgm" loop>
+  <source src="Baretta.mp3" type="audio/mp3">
+</audio>
+
+<script>
+/* ---------- LANG DATA ---------- */
+const lang = {
+  th:{
+    title:"🖤 In Loving Memory of REITA",
+    whoTitle:"🎸 เขาคือใคร",
+    whoText:"สมาชิกผู้เป็นเสาหลักของ the GazettE ผู้ชายที่ทุ่มเททั้งชีวิตให้กับดนตรี",
+    whoList:`<p>เสียงเบสที่เป็นเอกลักษณ์</p>
+             <p>พลังบนเวทีที่ไม่มีใครแทนได้</p>
+             <p>ความเข้มแข็งและหัวใจที่ยิ่งใหญ่</p>`,
+    quote:"“แม้ตัวตนจะจากไป แต่เสียงดนตรีจะไม่มีวันเลือนหาย”",
+    memoryTitle:"🌹 เรื่องราวและตำนาน",
+    memoryText:"ทุกการแสดง… ทุกเสียงดนตรี… ยังมีชีวิตอยู่ และจะยังคงเดินทางต่อไปในหัวใจของผู้คนทั่วโลก",
+    fanTitle:"🤍 จากแฟน ๆ ด้วยรัก",
+    fanText:`“ขอบคุณสำหรับแรงบันดาลใจ”<br>
+             “คุณทำให้เราเข้มแข็งขึ้น”<br>
+             “คุณจะอยู่ในหัวใจเราเสมอ”`,
+    forever:"Forever in Our Hearts",
+    footer:"Rest in Peace, REITA — You Will Never Be Forgotten.",
+    typing:[
+      "เสียงเบสของเขายังคงก้องอยู่ในหัวใจ...",
+      "วันนี้เราไม่เพียงแค่บอกลา...",
+      "แต่ขอบคุณจากหัวใจ สำหรับทุกสิ่งที่เขามอบไว้"
+    ]
+  },
+
+  en:{
+    title:"🖤 In Loving Memory of REITA",
+    whoTitle:"🎸 Who He Was",
+    whoText:"A pillar of the GazettE. A man who dedicated his entire life to music.",
+    whoList:`<p>A signature bass tone</p>
+             <p>An irreplaceable stage presence</p>
+             <p>A heart stronger than anyone</p>`,
+    quote:`“Even if he is gone, his music will never fade.”`,
+    memoryTitle:"🌹 Memories & Legacy",
+    memoryText:"Every performance… every sound… still lives on, and will continue to travel through the hearts of people around the world.",
+    fanTitle:"🤍 From Fans, With Love",
+    fanText:`“Thank you for the inspiration.”<br>
+             “You made us stronger.”<br>
+             “You will always live in our hearts.”`,
+    forever:"Forever in Our Hearts",
+    footer:"Rest in Peace, REITA — You Will Never Be Forgotten.",
+    typing:[
+      "His bass still echoes in our hearts...",
+      "Today we don't just say goodbye...",
+      "We say thank you — for everything he gave us."
+    ]
+  }
+};
+
+/* ---------- SWITCH FUNCTION ---------- */
+let currentLang = "th";
+const typingEl = document.querySelector(".typing");
+let i=0,j=0,typingSet = lang.th.typing;
+
+function switchLang(l){
+  currentLang = l;
+
+  document.getElementById("title").textContent = lang[l].title;
+  document.getElementById("whoTitle").textContent = lang[l].whoTitle;
+  document.getElementById("whoText").textContent = lang[l].whoText;
+  document.getElementById("whoList").innerHTML = lang[l].whoList;
+  document.getElementById("quote").textContent = lang[l].quote;
+  document.getElementById("memoryTitle").textContent = lang[l].memoryTitle;
+  document.getElementById("memoryText").textContent = lang[l].memoryText;
+  document.getElementById("fanTitle").textContent = lang[l].fanTitle;
+  document.getElementById("fanText").innerHTML = lang[l].fanText;
+  document.getElementById("forever").textContent = lang[l].forever;
+  document.getElementById("footerText").textContent = lang[l].footer;
+
+  typingSet = lang[l].typing;
+  i=0; j=0;
+  typingEl.textContent="";
+  type();
+}
+
+document.getElementById("thBtn").onclick = ()=>{
+  switchLang("th");
+  thBtn.classList.add("active");
+  enBtn.classList.remove("active");
+}
+
+document.getElementById("enBtn").onclick = ()=>{
+  switchLang("en");
+  enBtn.classList.add("active");
+  thBtn.classList.remove("active");
+}
+
+/* ---------- Scroll Reveal ---------- */
+const sections = document.querySelectorAll(".section");
+const reveal = () =>{
+  sections.forEach(sec=>{
+    const rect = sec.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 100){
+      sec.classList.add("show");
+    }
+  })
+}
+window.addEventListener("scroll", reveal);
+reveal();
+
+/* ---------- Typing Effect ---------- */
+function type(){
+  if(i < typingSet.length){
+    if(j < typingSet[i].length){
+      typingEl.textContent += typingSet[i].charAt(j);
+      j++;
+      setTimeout(type,50);
+    }else{
+      setTimeout(()=>{
+        typingEl.textContent="";
+        j=0;
+        i++;
+        type();
+      },1600);
+    }
+  }else{
+    i=0;j=0;
+    type();
+  }
+}
+type();
+
+/* ---------- Music ---------- */
+const btn = document.querySelector(".music-btn");
+const music = document.getElementById("bgm");
+let playing=false;
+
+window.addEventListener("load", () => {
+  music.volume = 0.2;
+  music.play().then(()=>{
+    btn.textContent = "Pause Music";
+    playing = true;
+  }).catch(()=>{
+    btn.textContent = "Play Music";
+    playing = false;
+  });
+});
+
+btn.addEventListener("click", ()=>{
+  playing = !playing;
+  if(playing){
+    music.play();
+    btn.textContent="Pause Music";
+  }else{
+    music.pause();
+    btn.textContent="Play Music";
+  }
+});
+
+/* ---------- Particles ---------- */
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+let particlesArray;
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+window.addEventListener("resize",()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  init();
+});
+
+class Particle{
+  constructor(){
+    this.x = Math.random()*canvas.width;
+    this.y = Math.random()*canvas.height;
+    this.size = Math.random()*2+0.5;
+    this.speedY = Math.random()*0.5;
+  }
+  update(){
+    this.y -= this.speedY;
+    if(this.y < 0){
+      this.y = canvas.height;
+      this.x = Math.random()*canvas.width;
+    }
+  }
+  draw(){
+    ctx.fillStyle = "rgba(255,255,255,0.6)";
+    ctx.beginPath();
+    ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
+    ctx.fill();
+  }
+}
+
+function init(){
+  particlesArray=[];
+  for(let i=0;i<120;i++){
+    particlesArray.push(new Particle());
+  }
+}
+function animate(){
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  particlesArray.forEach(p=>{
+    p.update();
+    p.draw();
+  });
+  requestAnimationFrame(animate);
+}
+
+init();
+animate();
+</script>
+
+</body>
+</html>

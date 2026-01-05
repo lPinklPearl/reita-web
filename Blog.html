@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pink's Sweet Blog 💗</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(180deg, #ffd6e8, #ffe9f2, #ffffff);
+      color: #555;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(90deg, #ff7eb3, #ff9acb);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(255, 126, 179, 0.4);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+    }
+
+    nav h1 {
+      font-size: 26px;
+      font-weight: 700;
+      text-shadow: 0 2px 6px rgba(0,0,0,.2);
+    }
+
+    nav a {
+      color: white;
+      margin-left: 15px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: .3s;
+    }
+
+    nav a:hover {
+      color: #ffe5f4;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      padding: 80px 0;
+    }
+
+    .hero-box {
+      background: rgba(255,255,255,.75);
+      border-radius: 30px;
+      padding: 40px;
+      border: 2px solid #ffcfe5;
+      box-shadow: 0 15px 40px rgba(255, 150, 200, .3);
+    }
+
+    .hero h2 {
+      font-size: 42px;
+      margin: 0 0 10px;
+      color: #ff4d88;
+    }
+
+    .title-heart {
+      animation: float 3s ease-in-out infinite;
+      display: inline-block;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0); }
+    }
+
+    /* Sections */
+    section h3 {
+      color: #ff4d88;
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .card {
+      background: rgba(255,255,255,.9);
+      border-radius: 24px;
+      padding: 25px;
+      border: 2px solid #ffd3ec;
+      box-shadow: 0 10px 25px rgba(255, 150, 200, .25);
+      transition: .3s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 40px rgba(255, 150, 200, .35);
+      background: #fff0fa;
+    }
+
+    /* Post Grid */
+    .post-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    .post-card h4 {
+      margin: 2px 0 6px;
+      color: #d63e78;
+      font-size: 20px;
+    }
+
+    .date {
+      font-size: 12px;
+      color: gray;
+    }
+
+    footer {
+      margin-top: 40px;
+      background: #ff9acb;
+      padding: 16px;
+      text-align: center;
+      color: white;
+      font-weight: 500;
+      box-shadow: 0 -6px 30px rgba(255, 130, 180, .4);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <nav>
+        <h1>Pink's Sweet Blog ✨</h1>
+        <div>
+          <a href="#about">About</a>
+          <a href="#posts">Posts</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-box">
+        <h2>มุมหวาน ๆ ของ Pink <span class="title-heart">💗</span></h2>
+        <p>
+          ที่นี่คือพื้นที่อบอุ่น ที่เก็บเรื่องราว ความรู้สึก และความสุขเล็ก ๆ ของหนู 🌷
+        </p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section id="about" class="container" style="padding: 20px 0;">
+    <h3>About Me 💕</h3>
+    <div class="card">
+      <p>
+        สวัสดีค่ะ หนูเป็นคนชอบเรียนรู้สิ่งใหม่ ๆ รักเทคโนโลยี เกม และอะไรที่ทำให้ยิ้มได้ 💖<br>
+        อยากให้ตรงนี้เป็นพื้นที่นุ่ม ๆ เหมือนได้พักใจ และกลับออกไปพร้อมกำลังใจดี ๆ นะคะ ✨
+      </p>
+    </div>
+  </section>
+
+
+  <!-- POSTS -->
+  <section id="posts" class="container" style="padding: 10px 0;">
+    <h3>Latest Posts 🌸</h3>
+    <div class="post-grid" id="post-list"></div>
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact" class="container" style="padding: 20px 0;">
+    <h3>Contact 💌</h3>
+    <div class="card">
+      <p>
+        อยากคุย อยากแบ่งปัน หรือมาเติมกำลังใจกันก็มาหาได้เลยนะคะ หนูยินดีเสมอ 💖
+      </p>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    Made with lots of love by Pink ✨
+  </footer>
+
+
+  <script>
+    const posts = [
+      {
+        title: 'โพสต์แรกที่หัวใจสีชมพู 💗',
+        date: '25 Dec 2025',
+        text: 'อยากมีมุมเล็ก ๆ บนโลกอินเทอร์เน็ตเอาไว้เก็บความรู้สึกดี ๆ ไว้กับตัวเอง'
+      },
+      {
+        title: 'วันนี้ยิ้มแล้วหรือยังนะ 🌷',
+        date: 'Coming Soon',
+        text: 'บางทีชีวิตก็เหนื่อย แต่ขอให้ยังมีรอยยิ้มเล็ก ๆ เป็นของตัวเองเสมอ'
+      },
+      {
+        title: 'พื้นที่อ่อนโยนของหัวใจ ✨',
+        date: 'Coming Soon',
+        text: 'อยากให้ที่นี่เป็น Safe Place ที่กลับมาเมื่อไหร่ก็รู้สึกดี'
+      }
+    ];
+
+    const list = document.getElementById('post-list');
+
+    posts.forEach(p => {
+      const card = document.createElement('div');
+      card.className = 'card post-card';
+      card.innerHTML = `
+        <h4>${p.title}</h4>
+        <span class="date">${p.date}</span>
+        <p>${p.text}</p>
+      `;
+      list.appendChild(card);
+    });
+  </script>
+
+</body>
+</html>
